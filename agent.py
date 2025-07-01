@@ -22,7 +22,7 @@ from livekit.agents import (
 from livekit.plugins import (
     deepgram,
     openai,
-    cartesia,
+    elevenlabs,
     silero,
     noise_cancellation,  # noqa: F401
 )
@@ -187,8 +187,13 @@ async def entrypoint(ctx: JobContext):
         vad=silero.VAD.load(),
         stt=deepgram.STT(),
         # you can also use OpenAI's TTS with openai.TTS()
-        tts=cartesia.TTS(),
-        llm=openai.LLM(model="gpt-4o"),
+        tts=elevenlabs.TTS(voice_id="y6q7sBOSQHmqEttPyWkV"),
+        llm=openai.LLM.with_azure(
+            azure_deployment="gpt-4",
+            azure_endpoint="https://phd-ai-poc.openai.azure.com/", # or AZURE_OPENAI_ENDPOINT
+            api_key="3d1704dc0fea4e0fae7f909d99f9ddaf", # or AZURE_OPENAI_API_KEY
+            api_version="2024-02-01", # or OPENAI_API_VERSION
+        ),
         # you can also use a speech-to-speech model like OpenAI's Realtime API
         # llm=openai.realtime.RealtimeModel()
     )

@@ -36,7 +36,7 @@ Clone the repository and install dependencies to a virtual environment:
 ```shell
 git clone https://github.com/livekit-examples/outbound-caller-python.git
 cd outbound-caller-python
-python3 -m venv venv
+python3.11 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python agent.py download-files
@@ -55,7 +55,7 @@ Set up the environment by copying `.env.example` to `.env.local` and filling in 
 Run the agent:
 
 ```shell
-python3 agent.py dev
+python agent.py dev
 ```
 
 Now, your worker is running, and waiting for dispatches in order to make outbound calls.
